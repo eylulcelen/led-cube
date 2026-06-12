@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cubeapp.ui.MainController"
+            style="-fx-background-color: #0d0d1a;">
+
+    <left>
+        <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #13132a; -fx-min-width: 190;">
+
+            <Label text="🧊 CubeApp"
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Separator/>
+
+            <!-- Connection -->
+            <Label text="CONNECTION"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+            <ComboBox fx:id="portCombo"
+                      promptText="Select Port"
+                      maxWidth="Infinity"/>
+            <Button fx:id="connectBtn"
+                    text="Connect"
+                    maxWidth="Infinity"
+                    onAction="#onConnectClicked"/>
+            <Label fx:id="statusLabel"
+                   text="● Disconnected"
+                   style="-fx-text-fill: #e74c3c; -fx-font-size: 11px;"/>
+
+            <Separator/>
+
+            <!-- Modes -->
+            <Label text="MODE"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+            <Button text="Animation Editor"
+                    maxWidth="Infinity"
+                    onAction="#onAnimationEditorClicked"/>
+            <Button text="Snake 🐍"
+                    maxWidth="Infinity"
+                    onAction="#onSnakeClicked"/>
+            <Button text="XOX ❌⭕"
+                    maxWidth="Infinity"
+                    onAction="#onXoxClicked"/>
+            <Button text="🕐 Hour Display"
+                    maxWidth="Infinity"
+                    onAction="#onHourDisplayClicked"/>
+
+            <Separator/>
+
+            <!-- Sensor panel -->
+            <Label text="SENSORS"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="💡 LDR:"
+                       style="-fx-text-fill: #aaa; -fx-font-size: 11px;"/>
+                <Label fx:id="ldrLabel"
+                       text="—"
+                       style="-fx-text-fill: #f1c40f; -fx-font-size: 11px;"/>
+            </HBox>
+
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="🌡 Temp:"
+                       style="-fx-text-fill: #aaa; -fx-font-size: 11px;"/>
+                <Label fx:id="tempLabel"
+                       text="—"
+                       style="-fx-text-fill: #e67e22; -fx-font-size: 11px;"/>
+            </HBox>
+
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="💧 Hum:"
+                       style="-fx-text-fill: #aaa; -fx-font-size: 11px;"/>
+                <Label fx:id="humLabel"
+                       text="—"
+                       style="-fx-text-fill: #3498db; -fx-font-size: 11px;"/>
+            </HBox>
+
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="☀ Bright:"
+                       style="-fx-text-fill: #aaa; -fx-font-size: 11px;"/>
+                <Label fx:id="brightnessLabel"
+                       text="—"
+                       style="-fx-text-fill: #2ecc71; -fx-font-size: 11px;"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- Sensor toggles -->
+            <Label text="FILTERS"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+
+            <CheckBox fx:id="adaptiveBrightnessCheck"
+                      text="Adaptive Brightness"
+                      selected="true"
+                      style="-fx-text-fill: #ccc; -fx-font-size: 11px;"/>
+
+            <CheckBox fx:id="tempColorCheck"
+                      text="Temperature Tint"
+                      selected="true"
+                      style="-fx-text-fill: #ccc; -fx-font-size: 11px;"/>
+
+            <Separator/>
+
+            <!-- Send -->
+            <Button fx:id="sendBtn"
+                    text="▶ Send to Cube"
+                    maxWidth="Infinity"
+                    onAction="#onSendClicked"
+                    disable="true"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane style="-fx-background-color: #0d0d1a;">
+            <Canvas fx:id="cubeCanvas" width="780" height="580"/>
+        </StackPane>
+    </center>
+
+</BorderPane>

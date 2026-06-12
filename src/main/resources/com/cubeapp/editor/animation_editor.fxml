@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane fx:id="root"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cubeapp.ui.editor.AnimationEditorController"
+            style="-fx-background-color: #0d0d1a;">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox spacing="12" style="-fx-padding: 10; -fx-background-color: #13132a; -fx-alignment: center-left;">
+            <Label text="Animation Editor"
+                   style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+            <Separator orientation="VERTICAL"/>
+
+            <Button text="📂 Load" onAction="#onLoad"/>
+            <Button text="💾 Save" onAction="#onSave"/>
+
+            <Separator orientation="VERTICAL"/>
+
+            <Button fx:id="playBtn"
+                    text="▶ Play"
+                    onAction="#onPlayStop"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+            <CheckBox fx:id="loopCheck"
+                      text="Loop"
+                      selected="true"
+                      style="-fx-text-fill: white;"/>
+
+            <Separator orientation="VERTICAL"/>
+
+            <Label text="Name:" style="-fx-text-fill: #888;"/>
+            <TextField fx:id="nameField"
+                       promptText="Animation name"
+                       prefWidth="140"/>
+
+        </HBox>
+    </top>
+
+    <!-- RIGHT PANEL — tools -->
+    <right>
+        <VBox spacing="14" style="-fx-padding: 16; -fx-background-color: #13132a; -fx-min-width: 160;">
+
+            <Label text="PAINT COLOR"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+            <ColorPicker fx:id="colorPicker" maxWidth="Infinity"/>
+
+            <Separator/>
+
+            <Label text="Z LAYER"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+            <Spinner fx:id="layerSpinner" min="0" max="4" initialValue="0"
+                     maxWidth="Infinity"/>
+            <Label text="(layer being painted)"
+                   style="-fx-text-fill: #555; -fx-font-size: 10px;"/>
+
+            <Separator/>
+
+            <Label text="FRAME DURATION"
+                   style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Spinner fx:id="durationSpinner" min="50" max="5000"
+                         initialValue="200" prefWidth="90"
+                         onValueChange="#onDurationChanged"/>
+                <Label text="ms" style="-fx-text-fill: #888;"/>
+            </HBox>
+
+            <Separator/>
+
+            <Button text="🗑 Clear Frame"
+                    onAction="#onClearFrame"
+                    maxWidth="Infinity"/>
+            <Button text="📋 Duplicate Frame"
+                    onAction="#onDuplicateFrame"
+                    maxWidth="Infinity"/>
+
+        </VBox>
+    </right>
+
+    <!-- BOTTOM — frame timeline -->
+    <bottom>
+        <fx:include fx:id="timeline"
+                    source="/com/cubeapp/editor/frame_timeline.fxml"/>
+    </bottom>
+
+    <!-- CENTER — layer grid (5x5 paint grid) -->
+    <center>
+        <VBox alignment="CENTER" spacing="10"
+              style="-fx-background-color: #0d0d1a; -fx-padding: 20;">
+            <Label text="Click cells to paint — editing Z layer shown above"
+                   style="-fx-text-fill: #555; -fx-font-size: 11px;"/>
+            <GridPane fx:id="paintGrid" hgap="4" vgap="4" alignment="CENTER"/>
+        </VBox>
+    </center>
+
+</BorderPane>

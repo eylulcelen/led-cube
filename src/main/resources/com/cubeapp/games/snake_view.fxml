@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane fx:id="root"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cubeapp.ui.games.SnakeController"
+            style="-fx-background-color: #0d0d1a;">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox spacing="20" style="-fx-padding: 12; -fx-background-color: #13132a; -fx-alignment: center-left;">
+            <Label text="Snake 🐍"
+                   style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+            <Label text="Score:"
+                   style="-fx-text-fill: #888;"/>
+            <Label fx:id="scoreLabel"
+                   text="0"
+                   style="-fx-text-fill: #2ecc71; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Label fx:id="statusLabel"
+                   text=""
+                   style="-fx-text-fill: #e74c3c; -fx-font-size: 13px;"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER — direction pad -->
+    <center>
+        <VBox alignment="CENTER" spacing="16"
+              style="-fx-background-color: #0d0d1a; -fx-padding: 30;">
+
+            <Label text="Controls" style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+
+            <!-- Z axis -->
+            <HBox alignment="CENTER" spacing="10">
+                <Button text="Z ↑" onAction="#onZPos" prefWidth="70" prefHeight="40"/>
+                <Button text="Z ↓" onAction="#onZNeg" prefWidth="70" prefHeight="40"/>
+            </HBox>
+
+            <!-- X / Y axis -->
+            <GridPane hgap="8" vgap="8" alignment="CENTER">
+                <Button text="← X-" onAction="#onXNeg" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="70" prefHeight="40"/>
+                <Button text="Y ↑" onAction="#onYPos" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="70" prefHeight="40"/>
+                <Button text="X+ →" onAction="#onXPos" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="70" prefHeight="40"/>
+                <Button text="Y ↓" onAction="#onYNeg" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="70" prefHeight="40"/>
+            </GridPane>
+
+            <Label text="(Keyboard: WASD + Q/E for Z)"
+                   style="-fx-text-fill: #555; -fx-font-size: 11px;"/>
+
+            <!-- Controls -->
+            <HBox alignment="CENTER" spacing="12">
+                <Button text="▶ Start / Restart"
+                        onAction="#onRestart"
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"
+                        prefWidth="150" prefHeight="36"/>
+                <Button text="⏸ Pause"
+                        onAction="#onPause"
+                        prefWidth="100" prefHeight="36"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
